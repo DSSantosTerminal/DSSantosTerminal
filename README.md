@@ -79,12 +79,25 @@ Fullstack developer at **OPT — Optimização e Planeamento de Transportes**, b
 
 ---
 
-## 📊 Station Dashboard
+## 📊 Passenger Info Board
+
+```
+╔══════════════════════════════════════════════════════════════════╗
+║  PASSENGER INFO BOARD                             DST-001        ║
+╠══════════════════════════════════════════════════════════════════╣
+║  C# / .NET      ████████████████████░░░░  primary stack          ║
+║  React / JS     ████████████░░░░░░░░░░░░  frontend               ║
+║  Python         ██████░░░░░░░░░░░░░░░░░░  scripting & data       ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Focus    Backend · Transit Systems · Passenger APIs             ║
+║  Station  OPT — Optimização e Planeamento de Transportes         ║
+╚══════════════════════════════════════════════════════════════════╝
+```
 
 <div align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=DSSantosTerminal&show_icons=true&bg_color=1C1108&title_color=E8600A&text_color=FAF5F0&icon_color=F5A623&border_color=3D2B1F" />
-  &nbsp;&nbsp;
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=DSSantosTerminal&layout=compact&bg_color=1C1108&title_color=E8600A&text_color=FAF5F0&border_color=3D2B1F" />
+
+![Passengers served](https://komarev.com/ghpvc/?username=DSSantosTerminal&color=E8600A&style=flat-square&label=PASSENGERS+SERVED)
+
 </div>
 
 ---
