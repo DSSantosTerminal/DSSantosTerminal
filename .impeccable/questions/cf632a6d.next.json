@@ -1,0 +1,214 @@
+{
+ "title": "Choose the visual world for DSSantos Terminal",
+ "question": "The roll assigned the Signal Box Panel. Keep it, take an alternate, or re-roll.",
+ "options": [
+  {
+   "id": "assigned",
+   "label": "Signal Box Panel",
+   "kicker": "THE ROLL",
+   "lineage": "Railway control panels: UK NX panels, Swiss Domino tile panels, Japanese CTC boards",
+   "thesis": "The profile is a working signalling panel. Your stack is the track layout, your work is the trains moving through it, and the interlocking logic is code.",
+   "palette": [
+    "#3B4A45",
+    "#E9ECE6",
+    "#F2B33D",
+    "#E0362C",
+    "#2FB36E",
+    "#4C8FE0"
+   ],
+   "materials": [
+    "enamelled domino tiles",
+    "engraved label plates",
+    "flat LED indicators",
+    "train describer berths"
+   ],
+   "viewport": "A wide panel mimic: the name plate engraved above a track diagram where five coloured routes (backend, database, frontend, data, tools) meet at an interchange called TERMINAL. A headcode train lights its way across track sections, one at a time.",
+   "risk": "Signalling is niche: non-transit visitors need clear labels to read the diagram and not just admire it.",
+   "raised": [
+    {
+     "from": "challenger-datamatics",
+     "raise": "Data density: describer berths and timings set as tight tabular mono numerals that carry real facts, with no decorative filler."
+    },
+    {
+     "from": "challenger-papercut",
+     "raise": "No glow and no gradient: depth comes only from flat stacked tiles and plates, and lit states are flat fills."
+    },
+    {
+     "from": "challenger-annual",
+     "raise": "One engraving face carries the name plate and the smallest label alike."
+    },
+    {
+     "from": "challenger-atelier",
+     "raise": "One reserved colour: signal red means only 'occupied / not yet open' (Ferret, Unity), never decoration."
+    }
+   ]
+  },
+  {
+   "id": "model-pick",
+   "label": "LED Passenger Display",
+   "kicker": "IMPECCABLE’S PICK",
+   "lineage": "On-board and platform dot-matrix passenger information displays",
+   "thesis": "The bus 'next stop' display you build at work, turned into the profile. Every letter is literally made of dots and bits.",
+   "palette": [
+    "#0B0B0A",
+    "#FFB000",
+    "#3A2A08",
+    "#7CF29A"
+   ],
+   "materials": [
+    "amber LED dot matrix",
+    "black display housing",
+    "scrolling ticker"
+   ],
+   "viewport": "A wide amber dot-matrix display reads 'DANIEL SANTOS ▸ FULLSTACK · TRANSIT', and a ticker scrolls through the stack as upcoming stops.",
+   "risk": "Familiar: dot-matrix and terminal looks are where most 'transit dev' profiles land."
+  },
+  {
+   "id": "challenger-teletext",
+   "label": "Teletext Travel Pages",
+   "verdict": "competitive",
+   "lineage": "CEEFAX / broadcast teletext magazines",
+   "thesis": "The profile as a teletext service: P100 index, a P4xx travel magazine, every section a numbered page.",
+   "palette": [
+    "#000000",
+    "#FFFFFF",
+    "#FFFF00",
+    "#00FFFF",
+    "#FF0000"
+   ],
+   "materials": [
+    "block mosaic graphics",
+    "40x24 bitmap grid"
+   ],
+   "viewport": "P100 header with page counter, double-height name in yellow, and a mosaic tram drawn from blocks.",
+   "case": "Fuses cleanly, and the text grid is very legible. It loses on audience identification: teletext speaks to retro nerds more than to transit or code.",
+   "risk": "Reads as retro novelty when the grid is not strict.",
+   "hero": "https://impeccable.style/worlds/cards/broadcast-programming-teletext-service-hero.webp"
+  },
+  {
+   "id": "challenger-azulejo",
+   "label": "Azulejo Station Hall",
+   "verdict": "competitive",
+   "lineage": "Portuguese tiled station halls (São Bento)",
+   "thesis": "The profile as cobalt tile panels narrating a career in the grammar of a Portuguese station hall.",
+   "palette": [
+    "#1F3F9A",
+    "#F6F3EA",
+    "#D9A62E"
+   ],
+   "materials": [
+    "tin-glazed tiles",
+    "grout seams",
+    "scrolled borders"
+   ],
+   "viewport": "A cobalt tile panel of a tram and train across the grid seams, with a cartouche naming DSSANTOS TERMINAL.",
+   "case": "Strong cultural home for a Portuguese transit dev. It loses on product clarity: code barely appears, and you chose a global mashup over one city.",
+   "risk": "Code becomes almost invisible.",
+   "hero": "https://impeccable.style/worlds/cards/architecture-places-azulejo-station-hall-hero.webp"
+  },
+  {
+   "id": "challenger-datamatics",
+   "label": "Datamatics Field",
+   "verdict": "declined",
+   "lineage": "Ryoji Ikeda data-sublime",
+   "palette": [
+    "#000000",
+    "#FFFFFF"
+   ],
+   "materials": [
+    "barcode bars",
+    "sine lattice"
+   ],
+   "thesis": "Transit data as pure black-and-white barcode fields.",
+   "viewport": "A barcode strobe field.",
+   "risk": "Loses the transit warmth entirely.",
+   "case": "Loses both axes: no transit identification, and the facts get buried.",
+   "kept": "Data density: real numbers, tight tabular mono."
+  },
+  {
+   "id": "challenger-papercut",
+   "label": "Layered Papercut",
+   "verdict": "declined",
+   "lineage": "Łowicz layered papercuts",
+   "palette": [
+    "#E0362C",
+    "#2FB36E",
+    "#1F3F9A",
+    "#F2B33D"
+   ],
+   "materials": [
+    "flat cut paper layers"
+   ],
+   "thesis": "A symmetrical roundel of layered paper.",
+   "viewport": "A papercut roundel.",
+   "risk": "No relation to transit or code.",
+   "case": "Loses both axes.",
+   "kept": "Depth by overlap only: no gradients, no glow."
+  },
+  {
+   "id": "challenger-annual",
+   "label": "Design Annual Plates",
+   "verdict": "declined",
+   "lineage": "Design annual plate sections",
+   "palette": [
+    "#F5F4F6",
+    "#16181A",
+    "#DCDDF3"
+   ],
+   "materials": [
+    "uncoated stock",
+    "registration marks"
+   ],
+   "thesis": "The profile as printed plates.",
+   "viewport": "A plate with a crosshair.",
+   "risk": "Too quiet: the 'stale' you want to leave behind.",
+   "case": "Loses both axes.",
+   "kept": "One typeface for everything."
+  },
+  {
+   "id": "challenger-atelier",
+   "label": "Couture Doll Atelier",
+   "verdict": "declined",
+   "lineage": "Miniature couture lookbooks",
+   "palette": [
+    "#F3ECE0",
+    "#E8B9B5",
+    "#111111",
+    "#B0233A"
+   ],
+   "materials": [
+    "tissue",
+    "gold foil"
+   ],
+   "thesis": "Each project as a numbered look.",
+   "viewport": "A lookbook plate.",
+   "risk": "Wrong world.",
+   "case": "Loses both axes.",
+   "kept": "One reserved colour for one meaning."
+  }
+ ],
+ "reroll": {
+  "registers": [
+   "safer",
+   "bolder"
+  ]
+ },
+ "canon": true,
+ "canonCard": {
+  "label": "The GitHub profile standard",
+  "thesis": "Typing-SVG header, shields.io badge rows, github-readme-stats cards, played straight and clean.",
+  "palette": [
+   "#0D1117",
+   "#E6EDF3",
+   "#E8600A"
+  ],
+  "materials": [
+   "shields badges",
+   "stats cards",
+   "typing SVG"
+  ],
+  "viewport": "Centered typing header, an about paragraph, badge grid, two stats cards side by side.",
+  "risk": "Indistinguishable from thousands of profiles by design."
+ },
+ "steer": true
+}

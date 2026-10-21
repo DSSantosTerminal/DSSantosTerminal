@@ -1,0 +1,13 @@
+{
+  "surface": "README.md",
+  "seedKey": "4ef04187",
+  "scope": "direction",
+  "mode": "experience",
+  "assignedIndex": 3,
+  "assigned": "Signal Box Panel",
+  "chosen": "model-pick",
+  "chosenLabel": "LED Passenger Display",
+  "questionKey": "cf632a6d",
+  "pingKind": "pick",
+  "buildPath": "code (no image generation)"
+}
