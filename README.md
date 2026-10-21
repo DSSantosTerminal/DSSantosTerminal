@@ -20,12 +20,10 @@ I'm a fullstack developer at OPT (Optimização e Planeamento de Transportes), w
 
 <br>
 
+<img src="assets/passengers.svg" width="100%" alt="LED ridership counter showing how many passengers (profile visitors) have been served. Updated daily." />
+
+<br>
+
 <a href="https://www.linkedin.com/in/daniel-santos-8bb581169/"><img src="assets/terminus.svg" width="100%" alt="LED sign: Terminus. All change. Find Daniel on LinkedIn." /></a>
 
-<div align="center">
-
-![Passengers served](https://komarev.com/ghpvc/?username=DSSantosTerminal&color=9A5B00&style=flat-square&label=PASSENGERS+SERVED)
-
-<sub>Every display on this page is drawn dot by dot by <a href="scripts/build_displays.py"><code>scripts/build_displays.py</code></a>.</sub>
-
-</div>
+<img src="https://komarev.com/ghpvc/?username=DSSantosTerminal&style=pixel" alt="" />

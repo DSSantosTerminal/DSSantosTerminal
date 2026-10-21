@@ -123,21 +123,6 @@
           "#CFCEC9",
           "#F1F0EF"
         ]
-      },
-      "counter-amber": {
-        "role": "neutral",
-        "displayName": "Counter Amber (third-party counter only)",
-        "canonical": "#9A5B00",
-        "tonalRamp": [
-          "#291800",
-          "#523000",
-          "#854E00",
-          "#C27300",
-          "#FF9700",
-          "#FFB447",
-          "#FFD599",
-          "#FFF2E0"
-        ]
       }
     },
     "typographyMeta": {

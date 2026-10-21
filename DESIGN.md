@@ -10,7 +10,6 @@ colors:
   silkscreen-grey: "#9A968A"
   live-green: "#3DDC84"
   screw-head: "#2B2A26"
-  counter-amber: "#9A5B00"
 typography:
   route-prompt:
     fontFamily: "PIS 5x7 (hand-set bitmap in scripts/build_displays.py), bold, 3x"
@@ -157,7 +156,6 @@ A single-emitter palette: amber light, its own dark off-state, and the dull mate
 - **Housing Edge** (housing-edge): the 1px enclosure outline.
 - **Silkscreen Grey** (silkscreen-grey): printed labels on the housing, square pixels only.
 - **Screw Head** (screw-head): the four corner screws (r 3.2, inset 11, stroke #111110 at 0.8).
-- **Counter Amber** (counter-amber): the colour parameter of the third-party komarev visitor counter. It exists so the one foreign object sits near the amber family; it is not a palette colour for new work.
 
 ### Named Rules
 **The One Emitter Rule.** Inside the glass there is amber and dead amber, nothing else. A second LED colour would make it a different display.
@@ -238,6 +236,9 @@ Twelve cells, each 3 x 7 dots with a 1-dot gutter, right-aligned on the title ro
 ### Service Updates Board
 273 x 80 at pitch 3. Header "Next departures" / "Expected", separator, two entries (ordinal, bold name, body note, bold right-aligned status), a second separator at row 64, and a full-width service-information ticker on row 69. An imminent status flashes (1.6s blink).
 
+### Ridership Counter
+205 x 36 at pitch 4, above the terminus. Bold "Passengers" / "served" on the left, and six odometer wheels on the right: lit 19 x 27 cells with a 3x digit knocked out, 2 dots apart, with leading zeros. On load each wheel rolls up through its last five faces in whole-dot steps; higher places stop sooner. The count comes from komarev's invisible `style=pixel` counter in the README. `.github/workflows/passengers.yml` reruns the build daily and commits `assets/passengers.svg` when the number changes. Right label "UPDATED DAILY" with the live pip.
+
 ### Terminus Sign
 205 x 36 at pitch 4, wrapped in the LinkedIn link. "Terminus" at 2x top-left, bold 1x "All change" and "LinkedIn ▸" right-aligned, a ticker on row 24 whose still frame is the LinkedIn handle. Right label "EXIT CODE 0" with the live pip.
 
@@ -267,5 +268,5 @@ Text scrolls right to left through a clipped window, one dot per step: `steps(wi
 - **Don't** use live green for anything except a real live or in-service pip.
 - **Don't** use fractional scales or set any text inside the glass below pitch 3 at 1x.
 - **Don't** add eased, smooth or sub-dot motion; no fades between pages.
-- **Don't** add shields-style badges, stats cards or typing-SVG headers; the komarev visitor counter is a retained product requirement, not a pattern to extend.
+- **Don't** add shields-style badges, stats cards or typing-SVG headers; visits are counted by komarev's invisible pixel and shown on the Ridership Counter display.
 - **Don't** pad a board with invented facts or ratings; an unknown is shown as "Soon" or omitted.

@@ -7,10 +7,14 @@ in whole-dot steps, the way real PIS firmware does it.
 
     python scripts/build_displays.py      # writes assets/*.svg
 """
+import re
 from html import escape
 from pathlib import Path
+from urllib.request import urlopen
 
 OUT = Path(__file__).resolve().parent.parent / "assets"
+# The README counts visits with komarev's invisible pixel; this reads the total.
+COUNTER = "https://komarev.com/ghpvc/?username=DSSantosTerminal&style=flat"
 
 LED_ON = "#FFB000"
 LED_OFF = "#2A1E06"
@@ -157,7 +161,12 @@ def shift(dots, dx, dy):
 # SVG assembly
 # ---------------------------------------------------------------------------
 def dots_path(dots, cls="", extra=""):
-    d = "".join(f"M{x} {y}h0" for x, y in sorted(dots, key=lambda p: (p[1], p[0])))
+    # Dots further along the same row are relative hops from the previous one.
+    parts, prev = [], None
+    for x, y in sorted(dots, key=lambda p: (p[1], p[0])):
+        parts.append(f"m{x - prev[0]} 0h0" if prev and prev[1] == y else f"M{x} {y}h0")
+        prev = (x, y)
+    d = "".join(parts)
     cls_attr = f' class="{cls}"' if cls else ""
     return f'<path{cls_attr}{extra} d="{d}"/>'
 
@@ -495,6 +504,70 @@ def service_updates():
     return d.svg(alt)
 
 
+def passenger_count():
+    """Reads the visit counter, or None when it can't be reached.
+
+    Reading the badge counts as one visit, so this runs once per build.
+    """
+    try:
+        with urlopen(COUNTER, timeout=10) as response:
+            badge = response.read().decode()
+    except OSError as error:
+        print(f"passenger count unavailable ({error}), keeping assets/passengers.svg")
+        return None
+    return int(re.sub(r"\D", "", re.findall(r"<text[^>]*>([^<]*)</text>", badge)[-1]))
+
+
+def passengers(count):
+    """A ridership odometer. On load each wheel rolls up to its digit."""
+    d = Display(cols=205, rows=36, pitch=4, title="passengers")
+    d.label_left = "DSSANTOS TERMINAL  ·  RIDERSHIP"
+    d.label_right = "UPDATED DAILY"
+
+    digits = f"{count:06d}"
+    cell_w, cell_h, gap, top = 19, 27, 2, 4
+    x0 = d.cols - 3 - len(digits) * (cell_w + gap) + gap
+    for text, row in (("Passengers", 8), ("served", 19)):
+        w, dots = render(text, bold=True)
+        check_fits(text, 3 + w + 4, x0)
+        d.lit(shift(dots, 3, row))
+
+    def wheel_face(n, x, y):
+        w, dots = render(str(n), scale=3)
+        box = {(i, j) for i in range(x, x + cell_w) for j in range(y, y + cell_h)}
+        return box - shift(dots, x + (cell_w - w) // 2, y + 3)
+
+    still = set()
+    for i, ch in enumerate(digits):
+        x, target = x0 + i * (cell_w + gap), int(ch)
+        if target == 0:
+            d.lit(wheel_face(0, x, top))
+            continue
+        # The wheel is the last few faces up to the digit, stacked; it slides up
+        # through the cell's window a dot at a time. Higher places stop sooner.
+        first = max(0, target - 4)
+        faces = range(first, target + 1)
+        wheel = set().union(*(wheel_face(n, x, top + k * cell_h) for k, n in enumerate(faces)))
+        target -= first
+        clip_id = f"clip{len(d.clips)}"
+        d.clips.append(
+            f'<clipPath id="{clip_id}"><rect x="{x - 0.5:g}" y="{top - 0.5:g}" '
+            f'width="{cell_w:g}" height="{cell_h:g}"/></clipPath>'
+        )
+        steps, seconds = target * cell_h, 0.9 + 0.25 * i
+        d.css.append(
+            f"@keyframes r{i}{{from{{opacity:1;transform:translateY(0)}}"
+            f"to{{opacity:1;transform:translateY({-steps}px)}}}}"
+            f".r{i}{{opacity:0;animation:r{i} {seconds:.2f}s steps({steps}) .4s both}}"
+        )
+        d.layers.append(f'<g clip-path="url(#{clip_id})"><g class="r{i}">{dots_path(wheel)}</g></g>')
+        still |= wheel_face(int(ch), x, top)
+    d.layers.append(f'<g class="still">{dots_path(still)}</g>')
+
+    alt = f"LED ridership counter: {count:,} passengers served. Updated daily."
+    return d.svg(alt)
+
+
 def terminus():
     d = Display(cols=205, rows=36, pitch=4, title="terminus")
     d.label_left = "DSSANTOS TERMINAL  ·  TERMINUS"
@@ -517,13 +590,17 @@ def terminus():
 
 def main():
     OUT.mkdir(exist_ok=True)
-    for name, build in (
+    displays = [
         ("destination-sign", destination_sign),
         ("departures", departures),
         ("console", console),
         ("service-updates", service_updates),
         ("terminus", terminus),
-    ):
+    ]
+    count = passenger_count()
+    if count is not None:
+        displays.append(("passengers", lambda: passengers(count)))
+    for name, build in displays:
         svg = build()
         (OUT / f"{name}.svg").write_text(svg, encoding="utf-8")
         print(f"assets/{name}.svg  {len(svg.encode()) / 1024:.1f} KB")
